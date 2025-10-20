@@ -44,4 +44,19 @@ public with sharing class TripTriggerHandler {
         
         return tripsToCreate;
     }
+    
+    /**
+     * Gère la validation avant insertion ou mise à jour d'un voyage
+     * @param newTrips Liste des voyages à valider
+     */
+    public static void handleBeforeInsertOrUpdate(List<Trip__c> newTrips) {
+        for (Trip__c trip : newTrips) {
+            // Validation des dates
+            if (trip.StartDate__c != null && trip.EndDate__c != null) {
+                if (trip.EndDate__c <= trip.StartDate__c) {
+                    trip.addError('La date de fin doit être postérieure à la date de début.');
+                }
+            }
+        }
+    }
 }

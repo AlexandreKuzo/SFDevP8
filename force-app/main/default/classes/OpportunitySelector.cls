@@ -5,7 +5,9 @@ public with sharing class OpportunitySelector {
         }
         return [
             SELECT Id, Name, Amount, StageName, CloseDate, AccountId,
-                   Destination__c, StartDate__c, EndDate__c, TotalCost__c, NumberOfParticipants__c
+                   Destination__c, StartDate__c, 
+                   EndDate__c, 
+                   TotalCost__c, NumberOfParticipants__c
             FROM Opportunity
             WHERE Id IN :opportunityIds
         ];

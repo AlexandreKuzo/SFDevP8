@@ -15,8 +15,8 @@ public with sharing class CheckBookedTripsBatch implements Database.Batchable<sO
         List<Trip__c> tripsToUpdate = new List<Trip__c>();
         
         for (Trip__c trip : scope) {
-            // Vérifier si le nombre de participants est inférieur à 10 et non null
-            if (trip.NumberOfParticipants__c != null && trip.NumberOfParticipants__c < 10) {
+            // Vérifier si le nombre de participants est inférieur à 10 ou non null
+            if (trip.NumberOfParticipants__c == null || trip.NumberOfParticipants__c < 10) {
                 trip.Status__c = 'Annulé';
                 tripsToUpdate.add(trip);
             }

@@ -5,16 +5,16 @@ public with sharing class OpportunityTriggerHandler {
         }
 
         List<Opportunity> changedToClosedWon = new List<Opportunity>();
+        
         for (Opportunity currentOpportunity : newOpportunities) {
             Opportunity oldOpportunity = oldOpportunityById.get(currentOpportunity.Id);
             if (oldOpportunity == null) {
                 continue;
             }
-            Boolean isNowClosedWon = currentOpportunity.StageName == 'Closed Won';
-            Boolean wasClosedWonBefore = oldOpportunity.StageName == 'Closed Won';
-            if (isNowClosedWon && !wasClosedWonBefore) {
+            if (currentOpportunity.StageName != oldOpportunity.StageName && currentOpportunity.StageName == 'Closed Won') {
                 changedToClosedWon.add(new Opportunity(Id = currentOpportunity.Id));
-            }
+            } 
+            
         }
 
         if (changedToClosedWon.isEmpty()) {

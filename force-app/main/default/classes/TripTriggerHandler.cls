@@ -13,17 +13,14 @@ public with sharing class TripTriggerHandler {
             // Vérification dynamique du champ de relation vers Account
             Map<String, Schema.SObjectField> tripFields = Schema.SObjectType.Trip__c.fields.getMap();
             if (tripFields.containsKey('Account__c')) {
-                newTrip.put('Opportunity__c', opportunity.Id);
-                newTrip.put('Account__c', opportunity.AccountId);
-                newTrip.put('Destination__c', opportunity.Destination__c);
-                newTrip.put('StartDate__c', opportunity.StartDate__c);
-                // Conversion DateTime → Date pour EndDate__c
-                if (opportunity.EndDate__c != null) {
-                    newTrip.put('EndDate__c', Date.valueOf(opportunity.EndDate__c));
-                }
-                newTrip.put('Status__c', 'A venir');
-                newTrip.put('TotalCost__c', opportunity.TotalCost__c);
-                newTrip.put('NumberOfParticipants__c', opportunity.NumberOfParticipants__c);
+                newTrip.Opportunity__c = opportunity.Id;
+                newTrip.Account__c = opportunity.AccountId;
+                newTrip.Destination__c = opportunity.Destination__c;
+                newTrip.StartDate__c = opportunity.StartDate__c;
+                newTrip.EndDate__c = opportunity.EndDate__c;
+                newTrip.Status__c = 'A venir';
+                newTrip.TotalCost__c = opportunity.TotalCost__c;
+                newTrip.NumberOfParticipants__c = opportunity.NumberOfParticipants__c;
             }
         }
         

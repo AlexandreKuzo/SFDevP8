@@ -23,7 +23,7 @@ public class TestDataFactory {
             Opportunity__c=opportunityId,
             Account__c=accountId,
             Destination__c='Test Destination',
-            StartDate__c=System.today(),
+            StartDate__c=System.today().addDays(2),
             EndDate__c=System.today().addDays(10),
             Status__c='A venir',
             TotalCost__c=10000,
